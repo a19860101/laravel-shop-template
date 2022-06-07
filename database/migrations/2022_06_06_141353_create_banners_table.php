@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRoleColumnToUsers extends Migration
+class CreateBannersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class AddRoleColumnToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-            $table->string('role',1)->default(1);
+        Schema::create('banners', function (Blueprint $table) {
+            $table->id();
+            $table->string('image')->nullable();
+            $table->string('title')->nullable();
+            $table->text('content')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -26,9 +29,6 @@ class AddRoleColumnToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-            $table->dropColumn('role');
-        });
+        Schema::dropIfExists('banners');
     }
 }

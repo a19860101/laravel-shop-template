@@ -18,11 +18,13 @@ class UserController extends Controller
         $role = $user->role;
         if($role == 1){
             DB::table('users')->where('id',$request->id)->update([
-                'role' => 0
+                'role' => 0,
+                'updated_at' => now()
             ]);
         }else{
             DB::table('users')->where('id',$request->id)->update([
-                'role' => 1
+                'role' => 1,
+                'updated_at' => now()
             ]);
         }
         return redirect()->back();
