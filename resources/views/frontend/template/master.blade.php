@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-tw">
 
@@ -12,7 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
     {{-- <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css"> --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
@@ -42,19 +43,25 @@
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> 登入</a>
+                @guest
+                    <a href="/login"><i class="fa fa-user"></i> 登入</a>
+                    <a href="/register"><i class="fa fa-user"></i> 註冊</a>
+                @endguest
+                @auth
+                    <a href="/dashboard"><i class="fa fa-user"></i> {{ Auth::user()->name }}</a>
+                @endauth
             </div>
         </div>
         <?php
-            $nav_categories = App\Models\Category::get();
+        $nav_categories = App\Models\Category::get();
         ?>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="./index.html">首頁</a></li>
                 <li><a href="#">商品一覽</a>
                     <ul class="header__menu__dropdown">
-                        @foreach($nav_categories as $nav_category)
-                        <li><a href="#">{{$nav_category->title}}</a></li>
+                        @foreach ($nav_categories as $nav_category)
+                            <li><a href="#">{{ $nav_category->title }}</a></li>
                         @endforeach
                     </ul>
                 </li>
@@ -101,11 +108,11 @@
                             </div>
                             <div class="header__top__right__auth">
                                 @guest
-                                <a href="/login"><i class="fa fa-user"></i> 登入</a>
-                                <a href="/register"><i class="fa fa-user"></i> 註冊</a>
+                                    <a href="/login"><i class="fa fa-user"></i> 登入</a>
+                                    <a href="/register"><i class="fa fa-user"></i> 註冊</a>
                                 @endguest
                                 @auth
-                                <a href="/dashboard"><i class="fa fa-user"></i> {{Auth::user()->name}}</a>
+                                    <a href="/dashboard"><i class="fa fa-user"></i> {{ Auth::user()->name }}</a>
                                 @endauth
                             </div>
                         </div>
@@ -126,8 +133,8 @@
                             <li class="active"><a href="./index.html">首頁</a></li>
                             <li><a href="#">商品一覽</a>
                                 <ul class="header__menu__dropdown">
-                                    @foreach($nav_categories as $nav_category)
-                                    <li><a href="#">{{$nav_category->title}}</a></li>
+                                    @foreach ($nav_categories as $nav_category)
+                                        <li><a href="#">{{ $nav_category->title }}</a></li>
                                     @endforeach
                                 </ul>
                             </li>
@@ -229,7 +236,9 @@
 
     <!-- Video Begin -->
     <div class="container pt-5 pl-0 pr-0">
-        <video src="https://images-na.ssl-images-amazon.com/images/I/G1y62L4C38S.mp4" poster="https://m.media-amazon.com/images/S/abs-image-upload-na/1/AmazonStores/A1VC38T7YXB528/667f724a16897748409c2fdd519e203d.w1750.h816._CR0%2C0%2C1750%2C816_SX3000_.jpg" class="col-12" controls></video>
+        <video src="https://images-na.ssl-images-amazon.com/images/I/G1y62L4C38S.mp4"
+            poster="https://m.media-amazon.com/images/S/abs-image-upload-na/1/AmazonStores/A1VC38T7YXB528/667f724a16897748409c2fdd519e203d.w1750.h816._CR0%2C0%2C1750%2C816_SX3000_.jpg"
+            class="col-12" controls></video>
     </div>
 
     <!-- Video End -->
@@ -240,7 +249,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>熱門人氣商品</h2>
+                        <h2>最新上架商品</h2>
                     </div>
                     <div class="featured__controls">
                         <ul>
@@ -432,7 +441,10 @@
                     <div class="footer__copyright">
                         <div class="footer__copyright__text">
                             <p>
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved.
+                                Copyright &copy;
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script> All rights reserved.
                             </p>
                         </div>
                         <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>

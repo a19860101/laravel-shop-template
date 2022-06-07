@@ -30,6 +30,10 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('admin/category/',[CategoryController::class,'index'])->name('adminCategoryIndex');
     Route::get('admin/category/create',[CategoryController::class,'create'])->name('adminCategoryCreate');
+    Route::post('admin/category/',[CategoryController::class,'store'])->name('adminCategoryStore');
+    Route::delete('admin/category/{category}',[CategoryController::class,'destroy'])->name('adminCategoryDelete');
+    Route::get('admin/category/{category}/edit',[CategoryController::class,'edit'])->name('adminCategoryEdit');
+    Route::patch('admin/category/{category}',[CategoryController::class,'update'])->name('adminCategoryUpdate');
 
     Route::get('admin/user/',[UserController::class,'index'])->name('adminMemberIndex');
     Route::post('admin/user/setRole',[UserController::class,'setRole'])->name('adminMemeberSetRole');
